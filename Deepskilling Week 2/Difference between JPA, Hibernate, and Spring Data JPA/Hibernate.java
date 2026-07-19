@@ -1,18 +1,40 @@
-public Integer addEmployee(Employee employee){
-      Session session = factory.openSession();
-      Transaction tx = null;
-      Integer employeeID = null;
-      
-      try {
-         tx = session.beginTransaction();
-         employeeID = (Integer) session.save(employee); 
-         tx.commit();
-      } catch (HibernateException e) {
-         if (tx != null) tx.rollback();
-         e.printStackTrace(); 
-      } finally {
-         session.close(); 
-      }
-      return employeeID;
-   }
+package com.cognizant.orm_learn.service;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
+import com.cognizant.orm_learn.model.Employee;
+
+public class EmployeeService {
+
+    private SessionFactory factory;
+
+    public EmployeeService(SessionFactory factory) {
+        this.factory = factory;
+    }
+
+    public Integer addEmployee(Employee employee) {
+        Session session = factory.openSession();
+        Transaction tx = null;
+        Integer employeeID = null;
+
+        try {
+            tx = session.beginTransaction();
+
+            employeeID = (Integer) session.save(employee);
+
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return employeeID;
+    }
 }
