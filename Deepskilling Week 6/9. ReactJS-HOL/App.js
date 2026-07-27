@@ -4,7 +4,6 @@ import { ListofPlayers, Scorebelow70 } from './ListofPlayers';
 import { IndianPlayers, OddPlayers, EvenPlayers, ListofIndianPlayers } from './IndianPlayers';
 
 function App() {
-  // Declare an array with 11 players and their scores
   const players = [
     { name: 'Virat Kohli', score: 85 },
     { name: 'Rohit Sharma', score: 65 },
@@ -19,7 +18,6 @@ function App() {
     { name: 'Mohammed Shami', score: 15 }
   ];
 
-  // Change flag value to true or false to test both views
   var flag = true;
 
   if (flag === true) {
